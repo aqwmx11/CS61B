@@ -82,7 +82,18 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        if( A == null )
+            return B;
+        //directly run to the end of intlist A
+        IntList C = A;
+        while( C.rest != null ) {
+            C = C.rest;
+        }
+
+        //append B to A's end
+        C.rest = B;
+
+        return A;
     }
 
     /**
@@ -91,7 +102,53 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        //Iterative method
+        /**
+        IntList C = null;
+        IntList ptr = null;
+
+        if(A != null ) {
+            C = new IntList(A.first, null);
+            ptr = C;
+            A = A.rest;
+            while (A != null) {
+                ptr.rest = new IntList(A.first, null);
+                ptr = ptr.rest;
+                A = A.rest;
+            }
+        }
+
+        if( B != null ) {
+            //initialization of the first node
+            if( C == null) {
+                C = new IntList(B.first, null);
+                ptr = C;
+            }
+            else {
+                ptr.rest = new IntList(B.first, null);
+                ptr = ptr.rest;
+            }
+            //copy the rest part of B
+            B = B.rest;
+            while(B != null){
+                ptr.rest = new IntList(B.first, null);
+                ptr = ptr.rest;
+                B = B.rest;
+            }
+        }
+         return C;
+         */
+
+        //Recursive method
+        if(A == null && B == null) {
+            return null;
+        }
+
+        if(A == null) {
+            return new IntList(B.first, catenate(null,B.rest));
+        }
+
+        return new IntList(A.first, catenate(A.rest, B));
     }
 
 
