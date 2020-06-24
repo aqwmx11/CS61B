@@ -19,14 +19,14 @@ public class LinkedListDeque<T> {
     }
     public void addFirst(T item) {
         dataNode newNode = new dataNode(item, sentinel, sentinel.next);
-        sentinel.next = newNode;
         sentinel.next.prev = newNode;
+        sentinel.next = newNode;
         size += 1;
     }
     public void addLast(T item) {
         dataNode newNode = new dataNode(item, sentinel.prev, sentinel);
-        sentinel.prev = newNode;
         sentinel.prev.next = newNode;
+        sentinel.prev = newNode;
         size += 1;
     }
     public boolean isEmpty() {
@@ -81,7 +81,7 @@ public class LinkedListDeque<T> {
         }
         return (T) getRecursiveHelper(index, sentinel.next);
     }
-    public T getRecursiveHelper(int index, dataNode ptr) {
+    private T getRecursiveHelper(int index, dataNode ptr) {
         if(index == 0) {
             return (T) ptr.item;
         }
